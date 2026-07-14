@@ -23,17 +23,17 @@ pipeline {
                 sh 'docker-compose up --abort-on-container-exit --exit-code-from ros2_ci'
             }
         }
-
-        stage('Cleanup') {
-            steps {
-                sh 'docker-compose down'
-            }
+    }
+    post {
+        always {
+            echo 'Cleaning up Docker containers...'
+            sh 'docker-compose down'
         }
-        stage('Done') {
-            steps {
-                sleep 5
-                echo 'Pipeline completed'
-            }
+        success {
+            echo 'Tests passed!'
+        }
+        failure {
+            echo 'Tests failed!'
         }
     }
 }
