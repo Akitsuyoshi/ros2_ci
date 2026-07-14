@@ -2,9 +2,9 @@ version: "3"
 
 services:
   ros2_ci:
-    build:
-      context: ..
-      dockerfile: ros2_ci/Dockerfile
+    # build:
+    #   context: ..
+    #   dockerfile: ros2_ci/Dockerfile
     image: akitsuyoshi/cp24:ros2_ci
     container_name: ros2_ci
     environment:
